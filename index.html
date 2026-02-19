@@ -323,31 +323,31 @@
     <div class="messages-wrapper">
       <div class="msg-slide active">
         <div class="msg-text">
-          Salam 🙂 Bu mesaj yalnız kodu bilən şəxs üçündür. Səni çox qiymətləndirirəm — bilmək istəyirdim ki, hər şeyə görə təşəkkür edirəm. ❤️
+          Salam 🙂 Bu mesaj yalnız kodu bilən şəxs üçündür.Sənnən zəhləm gedey ❤️
         </div>
         <span class="msg-tag">✉️ Mesaj 1</span>
       </div>
       <div class="msg-slide">
         <div class="msg-text">
-          Bəzən söz tapmaq çətin olur, amma bil ki — sən xüsusisin. Sadə bir günü belə özəl edən insanlardan birisin. 🌟
+          Bəzən söz tapmaq çətin olur, amma bil ki — sən beçsin 🌟
         </div>
         <span class="msg-tag">🌙 Mesaj 2</span>
       </div>
       <div class="msg-slide">
         <div class="msg-text">
-          Həyatında hər şeyin yaxşı olmasını istəyirəm. Xoşbəxtlik sənin yanında olsun, çətinliklər isə keçib getsin. 🍀
+          Həyatında hər şeyin yaxşı olmasını istəyirəm. Xoşbəxtlik sənin yanında olsun 🍀
         </div>
         <span class="msg-tag">🍀 Mesaj 3</span>
       </div>
       <div class="msg-slide">
         <div class="msg-text">
-          Sənin gülüşün günü işıqlandırır. Bunu heç vaxt unutma — istəsən bilmiyə də bilərsən, amma bu həqiqətdir. ☀️
+          Sənin gülüşün günü işıqlandırır. Zarafat elləm günəş işıqlandırır ☀️
         </div>
         <span class="msg-tag">☀️ Mesaj 4</span>
       </div>
       <div class="msg-slide">
         <div class="msg-text">
-          Bu qədər kifayət deyil — həmişə yanındayam. Sözlər bitməsə də, hisslər qalır. Sağ ol ki varsan. 💫
+          Bu qədər kifayət deyil — sən düzəlmiyəcən 💫
         </div>
         <span class="msg-tag">💫 Mesaj 5</span>
       </div>
@@ -362,6 +362,15 @@
 </div>
 
 <script>
+const errorMessages = [
+  "❌ Kod səhvdir! Bir də cəhd et 😉",
+  "🤔 Yox... bu deyil.",
+  "😅 Bir az da düşün.",
+  "🚫 Hələ tapmadın.",
+  "🧐 İpucu yadındadır?",
+  "💔 Bu dəfə olmadı...",
+  "😎 Son çarə get bioma bax."
+];
 // ——— CONFIG ———
 const correctPassword = "1234"; // ← burda dəyiş
 const totalMessages = 5;
@@ -453,7 +462,10 @@ function checkPassword() {
     // ❌ Səhv giriş mesajı
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=❌ Səhv kod cəhdi (${attemptCount})`);
 
-    errEl.textContent = '❌ Kod səhvdir! Yenidən cəhd et.';
+    // Təsadüfi mesaj seç
+    const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+
+    errEl.textContent = randomMessage;
     errEl.style.animation = 'none';
     void errEl.offsetWidth;
     errEl.style.animation = 'shake 0.4s ease';
